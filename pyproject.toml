@@ -1,0 +1,9 @@
+[project]
+name = "pytrack"
+version = "0.1.0"
+description = "Simple CLI Task Tracker"
+authors = [{ name = "Aulia Rahman" }]
+requires-python = ">=3.10"
+
+[project.scripts]
+pytrack = "pytrack:main"

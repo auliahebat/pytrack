@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "description": "Cuci Piring",
+        "status": "todo"
+    },
+    {
+        "id": 2,
+        "description": "Mandi",
+        "status": "progress"
+    },
+    {
+        "id": 3,
+        "description": "Lari Sore",
+        "status": "done"
+    },
+    {
+        "id": 4,
+        "description": "Cuci Baju",
+        "status": "done"
+    }
+]
