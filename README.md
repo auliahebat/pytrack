@@ -1,4 +1,4 @@
-# task-tracker
+# Pytrack
 Basic python project from https://roadmap.sh/projects/task-tracker
 
 A command-line tool to manage your daily tasks directly from the terminal.
