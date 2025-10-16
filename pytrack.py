@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+from datetime import datetime
 
 TASKS_FILE = 'tasks.json'
 
@@ -15,11 +16,14 @@ def save_tasks(tasks):
         json.dump(tasks, f, indent=4)
 
 def add_task(args, tasks):
+    now = datetime.now().strftime("%d %b %Y, %H:%M")
     new_id = tasks[-1]['id'] + 1 if tasks else 1
     new_task = {
         'id': new_id,
         'description': args.description,
-        'status': 'todo'
+        'status': 'todo',
+        'createdAt': now,
+        'updatedAt': now
     }
     tasks.append(new_task)
     print(f"new task added with id {new_id}: '{args.description}'")
@@ -28,6 +32,9 @@ def update_task(args, tasks):
     for task in tasks:
         if task['id'] == args.id:
             task['description'] = args.new_description
+            
+            task['updatedAt'] = datetime.now().strftime("%d %b %Y, %H:%M")
+            
             print(f"task id {args.id} updated to: '{args.new_description}'")
             return
     print(f"error: task with id {args.id} not found.")
@@ -49,6 +56,8 @@ def mark_task(args, tasks):
     for task in tasks:
         if task['id'] == args.id:
             task['status'] = args.status
+            task['updatedAt'] = datetime.now().strftime("%d %b %Y, %H:%M")
+            
             print(f"task id {args.id} status changed to '{args.status}'.")
             return
     print(f"error: task with id {args.id} not found.")
@@ -70,6 +79,7 @@ def list_tasks(args, tasks):
 
     for task in filtered_tasks:
         print(f"  [{task['id']}] {task['description']}  ({task['status']})")
+        print(f"      created: {task['createdAt']}, updated: {task['updatedAt']}")
 
 def main():
     parser = argparse.ArgumentParser(description="a simple command-line tracker.")
